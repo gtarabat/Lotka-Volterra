@@ -10,9 +10,9 @@ data.y0 = [ d(1,3) d(1,2) ]';
 
 %% optimize
 
-theta0 = [ 0.1 0.05 0.1 0.01 0.1 ];
+theta0 = [ 0.1 0.05 0.1 0.01 ];
 
-res = optimize_likelihood( theta0, data);
+res = optimize( theta0, data);
 
 % options = optimset('PlotFcns',@optimplotfval);
 % fun = @(theta) likelihood(theta,data);
