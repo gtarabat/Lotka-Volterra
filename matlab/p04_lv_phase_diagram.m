@@ -27,14 +27,20 @@ for i = 1:size(Y0,2)
     
     grid on
     hold on
-    xlabel('species 1')
-    xlabel('species 2')
+    xlabel('prey')
+    ylabel('predator')
 
+    set(gca,'FontSize',20)
+    
     subplot(1,2,2)
     plot( t, y, '-', 'LineWidth', 3 )
     
     grid on
     xlabel('time')
+    
+    
+    legend('prey','predator')
+    set(gca,'FontSize',20)
     
     % press enter
     pause();
