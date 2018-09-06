@@ -1,3 +1,4 @@
+close all
 clear
 
 a = 0.5;
@@ -22,7 +23,8 @@ y = deval(sol,t);
 
 % PLOT
 
-figure(1); close all
+fig = figure(1);
+fig.Color = [1 1 1];
 
 % just plot
 % plot( t, y, '-', 'LineWidth', 3 )
@@ -38,6 +40,13 @@ h1 = animatedline('LineWidth',3,'Color', [0, 0.4470, 0.7410] );
 h2 = animatedline('LineWidth',3,'Color', [0.8500, 0.3250, 0.0980] );
 h3 = animatedline('LineWidth',3,'Color', [0.9290, 0.6940, 0.1250] );
 
+writerObj = VideoWriter('video-06','MPEG-4');
+writerObj.FrameRate = 24;
+open(writerObj);
+
+frame = getframe(gcf) ;    
+writeVideo(writerObj, frame);
+
 addpoints(h1,t(1),y(1,1));
 addpoints(h2,t(1),y(2,1));
 addpoints(h3,t(1),y(3,1));
@@ -48,8 +57,14 @@ for k = 1:10:length(t)
     addpoints(h2,t(k),y(2,k));
     addpoints(h3,t(k),y(3,k));
     drawnow
+    
+    frame = getframe(gcf) ;    
+    writeVideo(writerObj, frame);
+    
 end
 
+
+close(writerObj);
 
 
 

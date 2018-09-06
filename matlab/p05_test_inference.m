@@ -21,7 +21,10 @@ data.y0 = y0;
 
 figure(1)
 
-plot( data.t, data.y, 'o-', 'LineWidth', 3 )
+p = plot( data.t, data.y, 'o--', 'LineWidth', 1 );
+set(p,'MarkerSize',10);
+p(1).MarkerFaceColor = p(1).Color;
+p(2).MarkerFaceColor = p(2).Color;
 grid on
 
 xlabel('time')

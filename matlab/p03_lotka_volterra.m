@@ -1,4 +1,5 @@
 clear
+close all
 
 a = 0.5;
 b = 0.01;
@@ -20,7 +21,8 @@ y = deval(sol,t);
 
 % PLOT
 
-figure(1);
+fig = figure(1);
+fig.Color = [1 1 1]; 
 axis([0 100 0 90])
 xlabel('time')
 set(gca,'FontSize',20)
@@ -34,6 +36,13 @@ grid on
 h1 = animatedline('LineWidth',3,'Color','red');
 h2 = animatedline('LineWidth',3,'Color','black');
 
+
+writerObj = VideoWriter('video-04','MPEG-4');
+writerObj.FrameRate = 24;
+open(writerObj);
+
+
+
 addpoints(h1,t(1),y(1,1));
 addpoints(h2,t(1),y(2,1));
 legend('prey','predator')
@@ -42,9 +51,14 @@ for k = 1:10:length(t)
     addpoints(h1,t(k),y(1,k));
     addpoints(h2,t(k),y(2,k));
     drawnow
+    
+    frame = getframe(gcf) ;    
+    writeVideo(writerObj, frame);
+    
 end
 
 
+close(writerObj);
 
 
 
