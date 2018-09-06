@@ -7,7 +7,7 @@ d = 0.4;
 e = 0.01;
 f = 0.00;
 
-tspan = [0 190];
+tspan = [0 160];
 y0 = [ 100 ; 20 ];
 F = @(t,y) [ y(1)*( a - b*y(1) - c*y(2) ) ; y(2)*( -d + e*y(1) - f*y(2) ) ];
 
@@ -28,6 +28,7 @@ plot( t, y, '-', 'LineWidth', 3 )
 
 
 xlabel('time')
+ylabel('population')
 set(gca,'FontSize',20)
 grid on
 legend('prey','predator')
