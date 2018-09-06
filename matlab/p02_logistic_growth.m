@@ -58,8 +58,6 @@ p.MarkerFaceColor = p.Color;
 frame = getframe(gcf) ;    
 writeVideo(writerObj, frame);
 
-pause(1)
-
 % ---- just plot
 %     plot( t, y, '-', 'LineWidth', 3, 'Color',p.Color )
 
@@ -77,12 +75,10 @@ end
 close(writerObj);
 
 
-pause
-
 %% Run for many initial conditions
 
-fig=figure(2); clf
-fig.Color = [1 1 1];
+fig2=figure(2); clf
+fig2.Color = [1 1 1];
 axis([0 20 0 200])
 hold on
 xlabel('time')
@@ -101,36 +97,36 @@ writerObj = VideoWriter('video-03','MPEG-4');
 writerObj.FrameRate = 24;
 open(writerObj);
 
+clear p
+for i=1:length(y0)
+    p(i)=plot(0,y0(i),'o');
+    p(i).MarkerSize = 10;
+    p(i).MarkerFaceColor = p(i).Color;
+end
+
+frame = getframe(fig2) ;    
+writeVideo(writerObj, frame);
+
+
 for i=1:length(y0)
     
     sol = ode45( F, tspan, y0(i) );
     y = deval(sol,t);
-   
-    p=plot(0,y0(i),'o');
-    p.MarkerSize = 10;
-    p.MarkerFaceColor = p.Color;
- 
-    frame = getframe(gcf) ;    
-    writeVideo(writerObj, frame);
-    
-    pause(0.5)
     
     % ---- just plot
 %     plot( t, y, '-', 'LineWidth', 3, 'Color',p.Color )
     
     % ---- animated plot
-    h = animatedline('LineWidth',3,'Color',p.Color);
+    h = animatedline('LineWidth',3,'Color',p(i).Color);
 
     for k = 1:50:length(t)
         addpoints(h,t(k),y(k));
         drawnow
         
-        frame = getframe(gcf) ;    
+        frame = getframe(fig2);    
         writeVideo(writerObj, frame);
     end
     
- 
-    pause(0.5)
 end
 
 close(writerObj);
