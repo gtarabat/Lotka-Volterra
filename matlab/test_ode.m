@@ -12,9 +12,9 @@ sol = ode45( F, tspan, y0 );
 % synthetic data
 figure(1)
 
-t = linspace( tspan(1), tspan(2), 30)';
+t = linspace( tspan(1), tspan(2), 50)';
 y = deval(sol,t);
-y = y + 0.02*randn(1,30);
+y = y + 0.01*randn(1,50);
 
 p = plot( t, y, 'o--', 'LineWidth', 1 );
 % set(p,'MarkerSize',10);
