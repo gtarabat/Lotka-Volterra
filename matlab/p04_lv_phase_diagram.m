@@ -9,8 +9,9 @@ b = 0.01;
 c = 0.1;
 d = 0.01;
 
-tspan = [0 100];
-Y0 = [ 20 25 30 35 40 45 50 55 60 65 ; 50 50 50 50 50 50 50 50 50 50  ];
+tspan = [0 10000];
+% Y0 = [ 20 25 30 35 40 45 50 55 60 65 ; 50 50 50 50 50 50 50 50 50 50  ];
+Y0 = [ 65 ; 50  ];
 
 F = @(t,y) [ y(1)*(a-b*y(2)) ; y(2)*(-c+d*y(1)) ];
 
@@ -22,7 +23,7 @@ for i = 1:size(Y0,2)
     % 45 23 113 15s 23s 23t 23tb 
     sol = ode23s( F, tspan, y0 );
 
-    t = linspace( tspan(1), tspan(2), 5000)';
+    t = linspace( tspan(1), tspan(2), 100000)';
     y = deval(sol,t);
 
     subplot(1,2,1)
@@ -47,6 +48,6 @@ for i = 1:size(Y0,2)
     set(gca,'FontSize',20)
     
     % press enter
-    pause();
+%     pause();
     
 end
