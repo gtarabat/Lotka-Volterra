@@ -16,7 +16,7 @@ p.MarkerFaceColor = p.Color;
 
 xlabel('time')
 ylabel('population')
-set(gca,'FontSize',20)
+set(gca,'FontSize',26)
 
 grid on
 hold on
@@ -35,7 +35,7 @@ tmp.Color = 'k';
 grid on
 xlabel('time')
 ylabel('population')
-set(gca,'FontSize',20)
+set(gca,'FontSize',26)
 saveas(fig2,'linear_model.eps','epsc')
 close(fig2)
 
@@ -51,9 +51,11 @@ for k=1:length(c)
     vector = [t(1),yy(1) ; t(end),yy(end)];
 
     for i=1:n
-        point(i,:) = projection_to_line(vector, [t(i),y(i)])';
+%         point(i,:) = projection_to_line(vector, [t(i),y(i)])';
+        point(i,:) = [ t(i), yy(i) ];
 
         pp(i) = plot([t(i) point(i,1)],[ y(i) point(i,2)],'r-');
+        
         pp(i).LineWidth = 2;
     end
 
