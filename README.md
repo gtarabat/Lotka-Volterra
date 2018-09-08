@@ -17,7 +17,7 @@ In order to run codes, following packages are required:
 `scipy` (for the ODE solver) and
 `cma` (for optimization).
 
-For Debian/Ubuntu, use the following commands to install all dependencies:
+For Debian/Ubuntu Linux, use the following commands to install all dependencies:
 ```bash
 sudo apt-get install python3 python3-pip
 python3 -m pip install jupyter
@@ -25,4 +25,9 @@ python3 -m pip install numpy
 python3 -m pip install matplotlib
 python3 -m pip install scipy
 python3 -m pip install cma
+```
+
+To run Jupyter, open a terminal (or `cmd` on Windows), navigate to the folder containing the repository or the `.ipynb` notebook files and run the following:
+```bash
+jupyter notebook
 ```
